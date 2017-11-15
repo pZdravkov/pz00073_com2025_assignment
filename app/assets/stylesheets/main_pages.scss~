@@ -1,0 +1,225 @@
+/*
+  main_pages.scss
+  Written by Petar Zdravkov pz00073
+*/
+
+// Import bootstrap library
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// Colors
+$primary_color: #008975;
+$secondary_color: #00AA8D;
+$lighter: #00BF9A;
+$violet: #ab47bc;
+$violet_border: #8d399b;
+$default_text: #fff;
+$secondary_title: #777;
+
+/* General style*/
+body {
+  margin-top: 100px;
+  background-image: url("backgr.png")
+}
+
+section {
+  overflow: auto;
+}
+
+hr {
+  border-top: 1px solid $primary_color;
+}
+
+.center {
+  margin-top: -30px;
+  text-align: center;
+  background-color: $violet;
+  height: 500px;
+  box-shadow: inset 35px 35px 25px 5px $violet_border;
+}
+
+.center h1, h2 {
+  marigin-bottom: 10px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #0495c9;
+    border-color: #357ebd; 
+    transition: all .5s ease-in-out;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #00b3db;
+    border-color: #285e8e;
+    transform: scale(1.5);
+}
+.col-xs-6 {
+  text-align: center;
+}
+
+.carousel-caption {
+
+  color: black;
+}
+
+.carousel-indicators li {
+    background-color: $primary_color;
+    box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.8);    
+}
+.carousel-indicators .active {
+    transform: scale(1.3);
+    background-color: $lighter;
+}
+
+#about_mainC {
+  
+}
+
+#about_photoC {
+  position: relative;
+}
+
+#about_infoC {
+  position: relative;
+}
+
+/* Typography*/
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow: 3px 1px #ab47bc;
+}
+
+h2 {
+  font-size: 1.5em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $default_text;
+}
+
+.jumbotron h3 {
+  color: white;
+  font-weight: bold;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* Header style */
+
+.navbar {
+  background-color: $primary_color;
+  padding-right: 40px;
+}
+
+ul.nav a {
+  color: $default_text !important;
+  font-weight: bold;
+  transition: all .4s ease-in-out;
+}
+
+ul.nav a:hover {
+  transform: scale(1.5);
+}
+
+#logo {
+  float: left;
+  margin-left: 80px;
+  font-size: 1.8em;
+  color: #fff;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  transition: all .5s ease-in-out;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+  transform: scale(1.5);
+}
+
+/* footer */
+
+footer {
+  margin-top: 20px;
+  border-top: 1px solid #000;
+  color: #000;
+  font-size: 1.2em;
+  position: fixed-bottom;
+
+  a {
+    color: $primary_color;
+  }
+
+  a:hover {
+    color: $lighter;
+  }
+
+  small {
+    float: left;
+  }
+
+  ul {
+    float: right;
+    list-style: none;
+
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}
+
+.pre-scrollable {
+	min-height: 65vh;
+	height: 100%;
+	background: rgba(54, 25, 25, .5);
+}
+
+#main_c {
+	background: rgba(156,39,176,.9);
+	box-shadow: inset 35px 35px 25px 5px $violet_border;
+}
+
+.carousel-inner {
+	h4 {
+		color: #fff;
+		font-weight: bold;
+		font-size: 1.8em;	
+	}
+	h5 {
+		color: #fff;
+		font-size: 1.2em;	
+	}
+	float: center;
+	text-align: center;
+	
+	.glyphicon {
+			font-size: 1.3em;
+	}
+}
+
+#main_c_t {
+	h4{
+		color:	#fff;
+		font-weight: bold;
+		font-size: 1.8em;
+	}
+	p{
+		color: #fff;	
+	}
+}
+
+

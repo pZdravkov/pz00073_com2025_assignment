@@ -1,0 +1,41 @@
+<!-- show.html.erb-->
+<!-- Written by Petar Zdravkov pz00073 -->
+
+<% provide(:title, @user.name) %>
+
+
+  <div class ="row center">
+     <div class="col-sm-6" id="acc_avatar">
+       <%= image_tag @user.avatar.url(:medium), class: 'img-circle' %>
+     </div>
+     
+     <div class="col-sm-6">
+     	 <div class="row" id="acc_name">
+       	<h3><%= @user.name %></h3>
+       </div>
+       <div class="row" id="acc_liked">
+       	<h3>You currently have-----songs liked!</h3>
+       </div>
+       <div class="row" id="acc_lib">
+       	<h3>Add more songs to your library!</h3>
+       </div>
+     </div>
+</div>
+<br>
+<br>
+<h4>Your Favourite Songs!</h4>
+<br>
+<div class="pre-scrollable container-fluid">
+   <div class="row">
+     
+   </div>
+   <div class="row">
+   <div class="embed-responsive embed-responsive-16by9">
+   <iframe class="embed-responsive-item" src="" ></iframe>
+   </div>
+   </div>
+   <div class="row">
+   </div>
+   <br>
+ </div>
+

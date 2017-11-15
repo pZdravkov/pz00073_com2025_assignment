@@ -1,0 +1,2 @@
+class UserLibrary < ApplicationRecord
+end

@@ -1,0 +1,42 @@
+<!-- about_html.erb-->
+<!-- Written by Petar Zdravkov pz00073-->
+
+<!-- Function providing page title.-->
+<% provide(:title, "About")%>
+
+<!-- Primary div.-->
+<div class="container-fluid">
+
+  <h3><%=t('about_page.ab_m')%></h3>
+    
+  <div class="row">
+    <div class="col-xs-6">
+      <%= image_tag("photo_me.jpg", class:"img-circle", :size => "260x260", :alt => "Me") %>
+    </div>
+
+    <div class="col-xs-6">
+      <h5><%= t('about_page.greet')%></h5>
+      <p><%= t('about_page.text_p1') %> <%= link_to t('about_page.text_p2'), "https://www.surrey.ac.uk" %> <%= t('about_page.text_p3')%></p>
+    </div>
+  </div>
+
+<hr>
+
+<h3><%= t('about_page.ab_s')%></h3>
+
+<br>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <p><%= t('about_page.text_p4')%></p>
+    </div>
+
+    <div class="col-xs-6">
+      <%= image_tag("logo.png", class:"img-circle", :size => "260x260", :alt => "Me") %>
+    </div>
+  </div>
+</div>
+ <%= render 'layouts/footer'%>
+
+
+

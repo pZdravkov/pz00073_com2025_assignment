@@ -1,0 +1,46 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en: 
+  global:
+    logo: 	"uTunes"
+    home: 	"Home"
+    help: 	"Help"
+    log:  	"Sign in"
+    about: 	"About"
+    contact: 	"Contact"
+    f_text: 	"Created by Petar Zdravkov with the help of "
+    t_text: 	"Ruby on Rails Tutorial!"
+
+  home_page:
+    m_title: 	"Welcome to uTunes"
+    s_title: 	"Your most faithful music companion!"
+    sign_btn: 	"Sign up!"
+
+  about_page:
+    ab_m:	"About the Autor"
+    ab_s:	"About the Website"
+    greet:	"Who am I?"
+    text_p1: 	"I am currently a second year Computer Science student at the "
+    text_p2: 	"University of Surrey "
+    text_p3: 	". I originate from Bulgaria, a country with a lot of history, and when I say a lot I mean something like more than 1300 years, and the true birthplace of yogurt. Yes LactobacilicusBulgaricus originates from Bulgaria it`s not Greece for God`s sake! Ok, a little too much about the Balkan conflicts. So I am a student and I study - a lot, and I basically am good in WEB development, not exactly RubyOnRails but I think I know what I am doing - most of the time. I hope that this beta application will somehow reflect part of my technical skill and knowledge about the subject. Some credit to YouTube!"
+    text_p4:	"uTunes is the first completely free to use online music library application. Now you can store every song you like by browsing our library. You can preview each song directly streaming from YouTube. Our library contains the top 100 songs for 2016-17 included. It is easy to use, powerful and most important it`s free. This application is part of a coursework for COM2025. It can not be coppied and used without notice of its creator e.g Petar Zdravkov pz00073@surrey.ac.uk."
+

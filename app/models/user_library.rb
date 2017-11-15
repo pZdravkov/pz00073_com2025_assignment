@@ -1,0 +1,3 @@
+class UserLibrary < ApplicationRecord
+	belongs_to :user
+end
