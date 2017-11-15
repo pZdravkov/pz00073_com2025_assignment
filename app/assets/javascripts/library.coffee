@@ -30,17 +30,5 @@ jQuery(document).ready ($) ->
     
     $('#carousel-text').html $('#slide-content-' + id).html()
     return
-    
-  $('.glyphicon-thumbs-up').click ->
-  	alert "Click Like"
-  	true
-  	
-  $('.glyphicon-thumbs-down').click ->
-  	alert "Click Dislike"
-  	true
-  	
-  $('.glyphicon-star').click ->
-  	alert "Click Add to Fav"
-  	true
   	
   return

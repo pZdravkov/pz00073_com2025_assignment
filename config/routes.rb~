@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   
   delete '/signout', to: 'sessions#destroy'
   
+  delete '/dell', to: 'library#delete'
+  
   resources :users
   
   resources :songs

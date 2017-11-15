@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114215954) do
+ActiveRecord::Schema.define(version: 20171115170132) do
 
   create_table "songs", force: :cascade do |t|
     t.string   "title"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20171114215954) do
     t.integer  "song_id"
     t.boolean  "liked",      default: false
     t.boolean  "disliked",   default: false
+    t.boolean  "favorite",   default: false
     t.index ["song_id"], name: "index_user_libraries_on_song_id"
     t.index ["user_id"], name: "index_user_libraries_on_user_id"
   end

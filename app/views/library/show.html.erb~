@@ -1,82 +1,23 @@
-<!-- show.html.erb -->
-<!-- Written by Petar Zdravkov pz00073-->
-
 <%= provide(:title, "Library")%>
 <div class="container" id="main_c">
-<div class="container" id="main_c_t">
-	<h4>Welcome to uTunes` library.</h4>
-	<p>You can select a song, preview it and add it to your own personal favourites!</p>
-</div>
-<div class="container">
-    <div id="main_area">
-        <!-- Slider -->
-        <div class="row">
-            <div class="col-sm-6" id="slider-thumbs">
-                <!-- Bottom switcher of slider -->
-                <ul class="hide-bullets list-unstyled">
-                  <% i = 0 %>
-						<% getSongs.each do |t| %>
-						<li class="col-sm-3">
-   						<a class="thumbnail" id=<%= updateSelectorId(i) %> ><img src=<%= getThumbnail(t)%>></a>
-						</li>
-						<% i += 1%>
-						<% end %>
-					</ul>
-            </div>
-            <div class="col-sm-6">
-                <div class="col-md-12" id="slider">
-                    <!-- Top part of the slider -->
-                    <div class="row">
-                        <div class="col-sm-12" id="carousel-bounding-box">
-                            <div class="carousel slide" id="myCarousel">
-                                <!-- Carousel items -->
-                                <div class="carousel-inner">
-                                    <div class="active item" data-slide-number="0">
-                                    	<div class="embed-responsive embed-responsive-16by9">
-   													<iframe class="embed-responsive-item" src=<%= getUrl(getSongs[0]) %> ></iframe>
-   												</div>
-   												<h4><%= getSongs[0].title %></h4>
-   												<h5><%= getSongs[0].artist %></h5>
-   												<div class="row">
-   															<span class="glyphicon glyphicon-thumbs-up" style="<%= checkIfLiked(0)%>"> <%= countLikes(0) %> &nbsp;</span>
-																<span class="glyphicon glyphicon-thumbs-down" style="<%= checkIfDisiked(0)%>"> <%= countDislikes(0)%> &nbsp;</span>
-																<%= link_to add_path(id: 1), method: :post do %>
-  																	<span class="glyphicon glyphicon-star" style="<%= checkIfFav(0)%>"> <%= countInFav(0) %></span>
-   															<% end %>
-   												</div>
-                                    </div>
-                                    
-                                    <% i = 1 %>
-                                    <% i.upto(getSongs.length - 1) do |t| %>
-                                    	<div class="item" data-slide-number=<%= i.to_s %>>
-                                    		<div class="embed-responsive embed-responsive-16by9">
-   														<iframe class="embed-responsive-item" src=<%= getUrl(getSongs[i]) %> ></iframe>
-  				 										</div>
-  				 										<h4><%= getSongs[i].title %></h4>
-  				 										<h5><%= getSongs[i].artist%></h5>
-  				 										<div class="row">
-   															<span class="glyphicon glyphicon-thumbs-up" style="<%= checkIfLiked(i)%>"> <%= countLikes(i) %> &nbsp;</span>
-   															<span class="glyphicon glyphicon-thumbs-down" style="<%= checkIfDisiked(i)%>"> <%= countDislikes(i)%> &nbsp;</span>
-   															<span class="glyphicon glyphicon-star" style="<%= checkIfFav(i)%>"> <%= countInFav(i) %></span>
-   													</div>
-                                    	</div>
-                                    <% i += 1%>
-                                    <% end %>
-                                </div>
-                                <!-- Carousel nav -->
-                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left"></span>
-                                </a>
-                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-right"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-    </div>
-</div>
+	<!-- Container holding the title and a short paragraph.-->
+	<div class="container" id="main_c_t">
+		<h4>Welcome to uTunes` library.</h4>
+		<p>You can select a song, preview it and add it to your own personal favourites!</p>
+	</div>
+	
+	<!-- Container hodling the carousel and the image grid.-->
+	<div class="container">
+   	<div id="main_area">
+       		<!-- Image gallery -->
+        		<div class="row">
+            	<%= render'gallery' %>
+            <!-- Slider -->
+            	<div class="col-sm-6">
+               	<%= render 'carousel' %>
+            	</div>
+        		</div>
+    	</div>
+	</div>
 </div>

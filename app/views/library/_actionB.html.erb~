@@ -1,0 +1,19 @@
+<div class="row">
+	<%= link_to add_path(uID: current_user.id, sID: @i, bID: 1), method: :post do %>
+	<button type="button" class="btn btn-link">
+		<span class="glyphicon glyphicon-thumbs-up" style="<%= checkIfSelected%>"></span>
+	</button>
+	<% end %>
+	
+	<%= link_to add_path(uID: current_user.id, sID: @i, bID: 2), method: :post do %>
+	<button type="button" class="btn btn-link">
+		<span class="glyphicon glyphicon-thumbs-down"></span>
+	</button>
+	<% end %>
+	
+	<%= link_to add_path(uID: current_user.id, sID: @i, bID: 3), method: :post do %>
+	<button type="button" class="btn btn-link">
+  		<span class="glyphicon glyphicon-star"></span>
+	</button>
+	<% end %>
+</div>

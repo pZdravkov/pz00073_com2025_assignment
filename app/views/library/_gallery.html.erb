@@ -1,0 +1,12 @@
+<div class="col-sm-6" id="slider-thumbs">
+	<!-- Bottom switcher of slider -->
+   <ul class="hide-bullets list-unstyled">
+   	<% i = 0 %>
+		<% getSongs.each do |t| %>
+			<li class="col-sm-3">
+   			<a class="thumbnail" id=<%= updateSelectorId(i) %> ><img src=<%= getThumbnail(t)%>></a>
+			</li>
+			<% i += 1%>
+		<% end %>
+	</ul>
+</div>
