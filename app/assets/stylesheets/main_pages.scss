@@ -182,15 +182,18 @@ footer {
   }
 }
 
-.pre-scrollable {
-	min-height: 65vh;
-	height: 100%;
+#comment-section {
 	background: rgba(54, 25, 25, .5);
+	min-height: 18.5em;
+	max-height: 18.5em;
+	margin-bottom: 20px;
+	overflow: auto;
 }
 
 #main_c {
 	background: rgba(156,39,176,.9);
 	box-shadow: inset 35px 35px 25px 5px $violet_border;
+	overflow: hide;
 }
 
 .carousel-inner {
@@ -211,6 +214,17 @@ footer {
 	}
 }
 
+.actionB {
+    color: #fff;
+    background-color: rgba(0,0,0,0);
+    transition: all .5s ease-in-out;
+}
+
+.actionB:hover, .actionB:focus, .actionB:active, .actionB.active, .open>.dropdown-toggle.actionB {
+    color: $lighter;
+    transform: scale(1.5);
+}
+
 #main_c_t {
 	h4{
 		color:	#fff;
@@ -221,5 +235,3 @@ footer {
 		color: #fff;	
 	}
 }
-
-

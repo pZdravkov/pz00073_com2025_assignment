@@ -14,9 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require bootstrap
 //= require_tree .
-jQuery.noConflict()
-
-function spanP() {
-  var txt1 = $("<i></i>").text("love");
-}

@@ -16,5 +16,4 @@
       <li><%= link_to t('global.contact'), contact_path %></li>
     </ul>
   </nav>
-  
 </footer>

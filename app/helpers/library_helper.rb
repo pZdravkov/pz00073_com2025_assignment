@@ -28,5 +28,67 @@ module LibraryHelper
 		"carousel-selector-" + index.to_s
 	end
 	
+	# Method that checks if a song is liked, disliked or added in favourites and changes the
+	# color of the button as marked.	
+	def checkifSelected(currentIndex, buttonID)
+		out = ""
+		
+		if buttonID == 1
+			getLibraries.each do |t|
+				if t.user_id == current_user.id && t.song_id == currentIndex + 1 && t.liked == true
+					out = "color: #00BF9A"
+				end
+			end
+		end
+		
+		if buttonID == 2
+			getLibraries.each do |t|
+				if t.user_id == current_user.id && t.song_id == currentIndex + 1 && t.disliked == true
+					out = "color: #00BF9A"
+				end
+			end
+		end
+		
+		if buttonID == 3
+			getLibraries.each do |t|
+				if t.user_id == current_user.id && t.song_id == currentIndex + 1 && t.favorite == true
+					out = "color: gold"
+				end
+			end
+		end
+		out
+	end
+	
+	# Method that checks if a song is liked, disliked or added in favourites and changes the
+	# color of the button as marked.	
+	def checkSelectedCount(currentIndex, buttonID)
+		out = 0
+		
+		if buttonID == 1
+			getLibraries.each do |t|
+				if t.song_id == currentIndex + 1 && t.liked == true
+					out += 1
+				end
+			end
+		end
+		
+		if buttonID == 2
+			getLibraries.each do |t|
+				if t.song_id == currentIndex + 1 && t.disliked == true
+					out += 1
+				end
+			end
+		end
+		
+		if buttonID == 3
+			getLibraries.each do |t|
+				if t.song_id == currentIndex + 1 && t.favorite == true
+					out += 1
+				end
+			end
+		end
+		
+		out
+	end
 	
 end

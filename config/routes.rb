@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   
   get '/signin', to: 'sessions#new'
-  
+
   post '/signup', to: 'users#create'
   
   post '/signin', to: 'sessions#create'
@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   resources :songs
   
   resources :user_libraries
+  
+  resources :comments
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -6,12 +6,29 @@ jQuery(document).ready ($) ->
 
   $('#myModal').on 'show.bs.modal', (e) ->
   
-  	alert "Hello"
-  	modal = $(this)
   	button = $(e.relatedTarget)
-  	sid = button.data('whatever')	
-  	modal.find('#para').text(sid)
-  	true
+  	
+  	uID = button.data('user')
+  	sID = button.data('song')
+  	bID = button.data('button')
+  	
+  	modal = $(this)
+  	
+  	content = modal.find('#comment').val().trim()
+  	
+  	$('#submit').click ->
+		
+  		$.ajax
+  			url: '/add'
+  			type: 'POST'
+  			data: remote: {uID,sID,bID,content}
+  		
+  			success: (data) ->
+  				alert 'Success'
+  				return
+  		return
+  	
+  	
 
   $('#myCarousel').carousel interval: 5000
   

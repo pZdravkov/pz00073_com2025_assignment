@@ -1,22 +1,30 @@
-<%= provide(:title, "Library")%>
-<div class="container" id="main_c">
+<!-- show.html.erb -->
+<!-- Written by Petar Zdravkov pz00073 -->
 
-	<!-- Container holding the title and a short paragraph.-->
+<!-- Function that provides the page title. -->
+<%= provide(:title, "Library")%>
+
+<!-- Pre-renders the comment modal. -->
+<%= render :partial => 'library/comment_form', :remote => true %>
+
+<!-- Container holding the main body. -->
+<div class="container-fluid" id="main_c">
+
+	<!-- Container holding the title and a short paragraph. -->
 	<div class="container" id="main_c_t">
 		<h4>Welcome to uTunes` library.</h4>
 		<p>You can select a song, preview it and add it to your own personal favourites!</p>
 	</div>
 	
 	<!-- Container hodling the carousel and the image grid.-->
-	<div class="container">
+	<div class="container-fluid">
    	<div id="main_area">
-       		<!-- Image gallery -->
-        		<div class="row">
+        		<div class="row" id="cars">
+        			<!-- Renders the image gallery. -->
             	<%= render'gallery' %>
-            <!-- Slider -->
-            	<div class="col-sm-6">
-               	<%= render 'carousel' %>
-            	</div>
+            	
+            	<!-- Renders the slider. -->
+               <%= render 'carousel' %>
         		</div>
     	</div>
 	</div>

@@ -3,7 +3,34 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery(document).ready ($) ->
-	
+
+  $('#myModal').on 'show.bs.modal', (e) ->
+  
+  	button = $(e.relatedTarget)
+  	
+  	uID = button.data('user')
+  	sID = button.data('song')
+  	bID = button.data('button')
+  	
+  	modal = $(this)
+  	
+  	content = modal.find('#comment').val().trim()
+  	
+  	$('#submit').click ->
+		
+  		$.ajax
+  			url: '/add'
+  			type: 'POST'
+  			data: remote: {uID,sID,bID,content}
+  			datatype:"html",
+      	async: true
+  		
+  			success: (data) ->
+  				alert 'Success'
+  				return
+  		return
+  	
+  	
 
   $('#myCarousel').carousel interval: 5000
   
@@ -30,5 +57,5 @@ jQuery(document).ready ($) ->
     
     $('#carousel-text').html $('#slide-content-' + id).html()
     return
-  	
+    
   return

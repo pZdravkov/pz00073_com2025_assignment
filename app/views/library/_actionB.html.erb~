@@ -1,19 +1,33 @@
+<!-- _actionB.html.erb -->
+<!-- Written by Petar Zdravkov pz00073 -->
+
+<!-- Row that holds the action buttons for each carousel item. -->
 <div class="row">
-	<%= link_to add_path(uID: current_user.id, sID: @i, bID: 1), method: :post do %>
-	<button type="button" class="btn btn-link">
-		<span class="glyphicon glyphicon-thumbs-up" style="<%= checkIfSelected%>"></span>
+
+	<!-- Like glyphicon button. -->
+	<%= link_to add_path(local: {uID: current_user.id, sID: @i, bID: 1}), method: :post do %>
+	<button type="button" class="btn btn-link actionB" style="<%= checkifSelected(@i, 1)%>" >
+		<span class="glyphicon glyphicon-thumbs-up"> <%= checkSelectedCount(@i, 1)%></span>
 	</button>
 	<% end %>
 	
-	<%= link_to add_path(uID: current_user.id, sID: @i, bID: 2), method: :post do %>
-	<button type="button" class="btn btn-link">
-		<span class="glyphicon glyphicon-thumbs-down"></span>
+	<!-- Dislike glyphicon button. -->
+	<%= link_to add_path(local: {uID: current_user.id, sID: @i, bID: 2}), method: :post do %>
+	<button type="button" class="btn btn-link actionB" style="<%= checkifSelected(@i, 2)%>" >
+		<span class="glyphicon glyphicon-thumbs-down"> <%= checkSelectedCount(@i, 2) %></span>
 	</button>
 	<% end %>
 	
-	<%= link_to add_path(uID: current_user.id, sID: @i, bID: 3), method: :post do %>
-	<button type="button" class="btn btn-link">
-  		<span class="glyphicon glyphicon-star"></span>
+	<!-- Add to favourites glyphicon button. -->
+	<%= link_to add_path(par: {local: current_user.id, sID: @i, bID: 3}), method: :post do %>
+	<button type="button" class="btn btn-link actionB" style=" <%= checkifSelected(@i, 3)%>" >
+  		<span class="glyphicon glyphicon-star"> <%= checkSelectedCount(@i, 3) %></span>
 	</button>
 	<% end %>
+	
+	<!-- Add comment modal button. -->
+	<button class="btn btn-link actionB" data-toggle="modal" data-target="#myModal", data-user="<%= current_user.id %>", data-song="<%= @i %>", data-button = "4">
+     <span class="glyphicon glyphicon-comment"></span>
+   </button>
+
 </div>

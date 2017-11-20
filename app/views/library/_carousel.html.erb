@@ -1,39 +1,56 @@
- <div class="col-md-12" id="slider">
- 	<!-- Top part of the slider -->
+<!-- _carousel.html.erb --> 
+<!-- Written by Petar Zdravkov pz00073 -->
+ 
+<!-- Column that holds the slider carousel. --> 
+<div class="col-sm-6 typ" id="slider">
+
    <div class="row">
    	<div class="col-sm-12" id="carousel-bounding-box">
       	<div class="carousel slide" id="myCarousel">
+      	
          	<!-- Carousel items -->
             <div class="carousel-inner">
+            
             	<div class="active item" data-slide-number="0">
+            	
+            		<!-- Creates the first active item and assign the parameters. -->
                	<div class="embed-responsive embed-responsive-16by9">
-  							<iframe class="embed-responsive-item" src=<%= getUrl(getSongs[0]) %> ></iframe>
+  							<iframe class="embed-responsive-item" src=<%= getUrl(getSongs[0])%>></iframe>
    					</div>
+   					
    					<% @i = 0 %>
-   					<h4><%= getSongs[@i].title %></h4>
-   					<h5><%= getSongs[@i].artist %></h5>
+   						<h4><%= getSongs[@i].title %></h4>
+   						<h5><%= getSongs[@i].artist %></h5>
    						<%= render 'actionB'%>
+   						<%= render 'comments' %>
                </div>
                    
+                  <!-- Increments the counter so all songs cold be added as items. -->
                	<% @i = 1 %>
                   <% @i.upto(getSongs.length - 1) do |t| %>
                   	<div class="item" data-slide-number=<%= @i.to_s %>>
+                  	
                      	<div class="embed-responsive embed-responsive-16by9">
    								<iframe class="embed-responsive-item" src=<%= getUrl(getSongs[@i]) %> ></iframe>
   				 				</div>
+  				 				
   				 				<h4><%= getSongs[@i].title %></h4>
   				 				<h5><%= getSongs[@i].artist%></h5>
   				 				<%= render 'actionB' %>
+  				 				<%= render 'comments' %>
   				 			</div>
+  				 			
                      <% @i += 1%>
-                     <% end %>     
-             </div>
-             	<!-- Carousel nav -->
-               <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-               	<span class="glyphicon glyphicon-chevron-left"></span></a>
+                   <% end %>     
+         	</div>
+            	
+            <!-- Carousel navigations. -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            	<span class="glyphicon glyphicon-chevron-left"></span></a>
                      	
-               <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-               	<span class="glyphicon glyphicon-chevron-right"></span></a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            	<span class="glyphicon glyphicon-chevron-right"></span></a>
+            	
 			</div>
 		</div>
 	</div>

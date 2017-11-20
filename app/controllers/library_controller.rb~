@@ -1,104 +1,191 @@
 class LibraryController < ApplicationController
   
+  	# Method initializing a new UserLibrary object.
   	def new
   		@u_lib = UserLibrary.new
   	end
   	
+  	# Method that returns all UserLibrary objects.
   	def getLibraries
   		@libraries = UserLibrary.all
   	end
   	
   	def create
-  		@userID = params[:uID]
-  		@songID = params[:sID]
-  		@buttonID = params[:bID]
-  		
-  		# Check if user is logged, check if library exists, check which button is pressed and perform actions
-  		if current_user == nil
-  			flash[:error] = "Please sign in so you could add this song to your favourites."
-  			redirect_to signin_path
-  		else
-  			if checkIfLibraryExists
-  				checkButtonPressed(@buttonID)
-  			else
-  				@u_lib = UserLibrary.new
-  				@u_lib.user_id = @userID
-  				@u_lib.song_id = (@songID.to_i + 1).to_s
-  				
-  					if @u_lib.save
-  						checkButtonPressed(@buttonID)
-  						flash[:success] = "Song added successfully! You can now see it on your dashboard."
-    					redirect_to '/library'
-    				else
-    					flash[:error] = "Cannot create user_library!."
-  					end
-  			end
-  		end
-  		delete
-  	end
   	
-  	def delete
-  		getLibraries.each do |t|
-  			if t.liked == false && t.liked == false && t.favorite == false
-  				t.destroy_all
-  			end
-  		end
+  		$userID
+  		$songID
+  		$buttonID
+  		$comment
+  	
+		checkUser
+		setParams	
+  		checkButton
+  		clearGarbage
+  		render 'show'
   	end
   	
   	private
-  		def checkIfLibraryExists
-  			UserLibrary.where(user_id: @userID, song_id: (@songID.to_i + 1).to_s).exists?
-  		end
-  		
-  		def checkButtonPressed(btnID)
-  			if btnID == 1.to_s
-  				changeValueForLiked
-  			else if btnID == 2.to_s
-  				changeValueForDisiked
-  			else if btnID == 3.to_s
-  				changeValueForFavorite
-  			else
-  				flash[:error] = "Cannot invoke button methods!."
+  	
+  		def clearGarbage
+  			getLibraries.each do |t|
+  				if t.liked == false && t.disliked == false && t.favorite == false
+  					t.destroy
+  				end
   			end
-  			end
-  			end
-  		end
-  		
-  		def changeValueForLiked
-  			if retrieveL.liked == true
-  				@uLib.liked = false
-  			else
-  				@uLib.liked = true 
-  			end
-  			
-  			@uLib.save
-  			@uLib.reload
-  		end
-  		
-  		def changeValueForDisliked
-  			if retrieveL.disliked == true
-  				@uLib.disliked = false
-  			else
-  				@uLib.disliked = true 
-  			end
-  			@uLib.save
-  			@uLib.reload
-  		end
-  		
-  		def changeValueForFavorite
-  			if retrieveL.favorite == true
-  				@uLib.favorite = false
-  			else
-  				@uLib.favorite = true
-  			end
-  			@uLib.save
-  			@uLib.reload
-  		end
-  		
-  		def retrieveL
-  			@uLib = UserLibrary.find_by(user_id: @userID, song_id: (@songID.to_i + 1).to_s)
   		end
   	
+  		def checkUser
+  			if current_user == nil
+  				flash[:error] = "Please sign in so you can add this song to your favorites."
+  				redirect_to signin_path
+  			end
+  		end
+  	
+  		def setParams
+  			if params['local'] != nil
+  				$userID = params['local']['uID']
+  				$songID = params['local']['sID']
+  				$buttonID = params['local']['bID']
+  			else if params['remote'] != nil
+  				$userID = params['remote']['uID']
+  				$songID = params['remote']['sID']
+  				$buttonID = params['remote']['bID']
+  				$comment = params['remote']['content']
+  			else
+  				flash[:error] = "Opps! Cannot find any button provided params!"
+  				redirect_to '/library'
+  			end
+  			end
+  		end
+  	
+  		def checkButton
+  			if $buttonID == 1.to_s
+  				selectedLikeBtn
+  			else if $buttonID == 2.to_s
+  				selectedDislikeBtn
+  			else if $buttonID == 3.to_s
+  				selectedFavoriteBtn
+  			else if $buttonID == 4.to_s
+  				selectedCommentBtn
+  			end
+  			end
+  			end
+  			end
+  		end
+  	
+  		def selectedLikeBtn
+  			prepareLibrary
+  			updateColumn("liked")
+  		end
+  	
+ 	 	def selectedDislikeBtn
+  			prepareLibrary
+  			updateColumn("disliked")
+ 	 	end
+  	
+  		def selectedFavoriteBtn
+  			prepareLibrary
+  			updateColumn("favorite")
+ 	 	end
+ 	 	
+ 	 	def selectedCommentBtn
+ 	 		addComment
+ 	 	end
+ 	 	
+ 	 	def prepareLibrary
+ 	 		if UserLibrary.where(user_id: $userID, song_id: ($songID.to_i + 1).to_s).exists? == false
+ 	 			@uLib = UserLibrary.new
+ 	 			@uLib.user_id = $userID
+ 	 			@uLib.song_id = ($songID.to_i + 1).to_s
+ 	 			@uLib.save
+ 	 			@uLib.reload
+ 	 		end
+ 	 	end
+ 	 	
+ 	 	def addComment
+ 	 		@record = Comment.new
+ 	 		@record.user_id = $userID
+ 	 		@record.song_id = ($songID.to_i + 1).to_s
+ 	 		@record.comment = $comment
+ 	 		if @record.save
+ 	 			flash[:success] = "Comment added"
+ 	 		end
+ 	 	end
+ 	 	
+ 	 	def updateColumn(column)
+ 	 		@current = UserLibrary.find_by(user_id: $userID, song_id: ($songID.to_i + 1).to_s)	 		
+ 	 		
+ 	 		if column == "liked"
+ 	 			if @current.liked == false
+ 	 				if @current.disliked == true
+ 	 					@current.disliked = false
+ 	 					@current.liked = true
+ 	 				else
+ 	 					@current.liked = true
+ 	 				end
+ 	 				flashMessage("liked", true)
+ 	 			else
+ 	 				@current.liked = false
+ 	 				flashMessage("liked", false)
+ 	 			end
+ 	 		end
+ 	 		
+ 	 		if column == "disliked"
+ 	 			if @current.disliked == false
+ 	 				if @current.liked == true
+ 	 					@current.liked = false
+ 	 					@current.disliked = true
+ 	 				else
+ 	 					@current.disliked = true
+ 	 				end
+ 	 				flashMessage("disliked", true)
+ 	 			else
+ 	 				@current.disliked = false
+ 	 				flashMessage("disliked", false)
+ 	 			end
+ 	 		end
+ 	 		
+ 	 		if column == "favorite"
+ 	 			if @current.favorite == true
+ 	 				@current.favorite = false
+ 	 				flashMessage("favorite", false)
+ 	 			else
+ 	 				@current.favorite = true
+ 	 				flashMessage("favorite", true)
+ 	 			end
+ 	 		end
+ 	 		
+ 	 		@current.save
+ 	 		@current.reload
+ 	 	end
+ 	 	
+ 	 	def flashMessage(column, value)
+ 	 		
+ 	 		out = ""
+ 	 		
+ 	 		if column == "liked"
+ 	 			if value == true
+ 	 				out = "Song Liked!"
+ 	 			else
+ 	 				out = "Like removed!"
+ 	 			end
+ 	 		else if column == "disliked"
+ 	 			if value == true
+ 	 				out = "Disliked!"
+ 	 			else
+ 	 				out = "Dislike Removed!"
+ 	 			end
+ 	 		else if column == "favorite"
+ 	 			if value == true
+ 	 				out = "Added to favorites!"
+ 	 			else
+ 	 				out = "Removed from favorites!"
+ 	 			end
+ 	 		end
+ 	 		end
+ 	 		end
+ 	 		
+ 	 		flash[:success] = out
+ 	 	end
 end
-
 
